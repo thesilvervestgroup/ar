@@ -6,7 +6,7 @@ Opening and reading AR archives (like .deb files) in PHP
 
 Create a reader object:
 
-    $ar = new \Tsg\Ar\Reader::open('/path/to/file');
+    $ar = \Tsg\Ar\Reader::open('/path/to/file');
 
 Get a list of files inside archive:
 
@@ -14,7 +14,7 @@ Get a list of files inside archive:
 
 This returns an array of files in format:
 
-    $list = [ 'filename' => [ 'fpos' => position in file, 'size' => size in bytes, 'uid' => user ID, 'gid' => group ID, 'mode' => file mode' ] , ... ];
+    $list = [ 'filename' => [ 'fpos' => position in file, 'size' => size in bytes, 'uid' => user ID, 'gid' => group ID, 'mode' => file mode ] , ... ];
 
 Retrieve a file's contents from inside archive:
 
