@@ -1,0 +1,14 @@
+{
+    "name": "tsg/ar",
+    "description": "Small lib for handling GNU ar files (i.e. .deb files)",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nick Silvestro",
+            "email": "nick@silvervest.net"
+        }
+    ],
+    "autoload": {
+        "psr-4": { "Tsg\\Ar\\": "" }
+    }
+}
