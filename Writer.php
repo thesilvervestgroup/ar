@@ -41,19 +41,24 @@ class Writer
      */
     public function add($filename)
     {
-        if (!file_exists($filename) || !is_readable($filename)) {
-            throw new \Exception('Could not read file for adding: ' . $filename);
-        }
+        // treat the incoming file as a glob, so we can add a bunch of files at once
+        $files = glob($filename);
 
-        // get file info and data
-        $stat = stat($filename);
-        if ($stat === false || !is_array($stat)) {
-            throw new \Exception('Could not get file information: ' . $filename);
-        }
-        $data = file_get_contents($filename);
-        $name = basename($filename);
+        foreach ($files as $filename) {
+            if (!file_exists($filename) || !is_readable($filename)) {
+                throw new \Exception('Could not read file for adding: ' . $filename);
+            }
 
-        $this->file->add($name, $data, $stat[2], $stat[9], $stat[4], $stat[5]);
+            // get file info and data
+            $stat = stat($filename);
+            if ($stat === false || !is_array($stat)) {
+                throw new \Exception('Could not get file information: ' . $filename);
+            }
+            $data = file_get_contents($filename);
+            $name = basename($filename);
+
+            $this->file->add($name, $data, $stat[2], $stat[9], $stat[4], $stat[5]);
+        }
 
         return $this;
     }
